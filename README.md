@@ -16,7 +16,7 @@ This project is a small JavaScript exercise intended to practice JS CSS and HTML
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![Example screenshot](./assets/screen-shot.png)
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 
