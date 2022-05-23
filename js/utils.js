@@ -27,16 +27,16 @@ function printMat(mat, selector) {
 }
 
 
-// goes throgh the entire data matrix, and checks isEmpty condition
+// goes throgh the entire data matrix, and checks empty condition
 // for each cell. if true push to emptyCells than randomly sellect 
 // from empty cells. if there are no empty cells in data mat than  
 // return ifNoEmptyCells. 
 // returns a location object: { i, j }
-function getRndEmptyCellLocation(mat, isEmpty, ifNoEmptyCells) {
+function getRndEmptyCellLocation(mat, emptyCellDefinition, ifNoEmptyCells = null) {
   var emptyCells = [];
   for (var i = 0; i < mat.length; i++) {
     for (var j = 0; j < mat[0].length; j++) {
-      if (isEmpty) {
+      if (mat[i][j] === emptyCellDefinition) {
         emptyCells.push({ i, j });
       }
     }

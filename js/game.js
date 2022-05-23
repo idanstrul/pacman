@@ -3,6 +3,7 @@ const WALL = '#'
 const FOOD = '.'
 const POWERFOOD = '⨂'
 const EMPTY = ' ';
+const CHERRY = '🍒';
 
 var gBoard;
 var gGame = {
@@ -10,6 +11,7 @@ var gGame = {
     isOn: false
 }
 var gTotalFood;
+var gIntervalCherry;
 
 function init() {
     // console.log('Hello')
@@ -22,6 +24,7 @@ function init() {
     printMat(gBoard, '.board-container')
     gGame.isOn = true;
     document.querySelector('.modal').style.display = 'none';
+    gIntervalCherry = setInterval(addCheery, 15000);
 }
 
 function buildBoard() {
@@ -35,7 +38,7 @@ function buildBoard() {
                 (j === 3 && i > 4 && i < SIZE - 2)) {
                 board[i][j] = WALL;
             } else if ((i === 1 && j === 1) || (i === 1 && j === SIZE - 2)
-                    || (i === SIZE - 2 && j === 1) || (i === SIZE -2 && j === SIZE - 2)) {
+                || (i === SIZE - 2 && j === 1) || (i === SIZE - 2 && j === SIZE - 2)) {
                 board[i][j] = POWERFOOD;
             } else {
                 board[i][j] = FOOD;
@@ -55,16 +58,23 @@ function updateScore(diff) {
 function endGame() {
     gGame.isOn = false;
     clearInterval(gIntervalGhosts);
+    clearInterval(gIntervalCherry);
 
     var isWinner = gGame.score >= gTotalFood;
-    if (!isWinner){
+    if (!isWinner) {
         // update the model
         gBoard[gPacman.location.i][gPacman.location.j] = EMPTY
         // update the DOM
         renderCell(gPacman.location, EMPTY)
     }
 
-    document.querySelector('.modal h2').innerText = (!isWinner)? 'Game Over!': 'You Won!';
+    document.querySelector('.modal h2').innerText = (!isWinner) ? 'Game Over!' : 'You Won!';
     document.querySelector('.modal').style.display = 'block';
 }
 
+function addCheery(){
+    var location = getRndEmptyCellLocation(gBoard,  ' ');
+    if (!location) return;
+    gBoard[location.i][location.j] = CHERRY;
+    renderCell(location, CHERRY);
+}

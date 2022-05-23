@@ -31,6 +31,10 @@ function movePacman(ev) {
             if (deadGhost.currCellContent === FOOD){
                 updateScore(1);
                 deadGhost.currCellContent = EMPTY;
+            } else if (deadGhost.currCellContent === CHERRY){
+                updateScore(10);
+                deadGhost.currCellContent = EMPTY;
+
             }
         } else {
             endGame();
@@ -47,6 +51,11 @@ function movePacman(ev) {
         renderAllGhosts();
         setTimeout(function(){gPacman.isSuper = false}, 5000)
         setTimeout(resurrectGhosts, 5000)
+    }
+    if (nextCell === CHERRY){
+        updateScore(10);
+        gTotalFood += 10;
+        if (gGame.score >= gTotalFood) endGame();
     }
 
     // moving from corrent position:
