@@ -1,8 +1,11 @@
+<img src="./assets/pacman-wide-banner.jpg" style="width: 100%">
+
 # Pacman
 > A small version of the Pac-Man game.
 
 
 ## General Information
+<img src="./assets/ghost.png" style="width: 100px;" align="right">
 This project is a small JavaScript exercise intended to practice JS CSS and HTML integration while applying the logic of the original pacman game in a matrix data model. This is one of the first exercises performed as part of the Coding Academy web development course.
 
 
